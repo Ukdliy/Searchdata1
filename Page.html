@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top" />
+    <style>
+      /* CSS untuk tampilan modern */
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f1f1f1;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-image: radial-gradient(
+          circle at 119.33% 50%,
+          #787874 0,
+          #505467 25%,
+          #1f3259 50%,
+          #00154b 75%,
+          #00003e 100%
+        );
+        color: #fff;
+        padding: 30px;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 25px;
+      }
+      .header img {
+        height: 80px;
+      }
+      .content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 35px;
+        margin-top: 25px;
+      }
+      .search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .search-container input[type="text"] {
+        width: 25%;
+        height: 45px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-top-left-radius: 15px;
+        outline-color: #ccc;
+        font-size: 16px;
+        text-align: center;
+        background-color: white;
+        background-image: url("https://www.w3schools.com/css/searchicon.png");
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+      }
+
+      .search-container input[type="text"]:focus {
+        width: 28%;
+      }
+      .search-container button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: 2px solid #ccc;
+        border-top-right-radius: 15px;
+        cursor: pointer;
+        font-size: 16px;
+        height: 45px;
+      }
+      .search-container button:hover {
+        background-color: #45a049;
+      }
+      table {
+        border-collapse: inherit;
+        margin: auto;
+        width: 100%;
+        border-radius: 10px;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 8px;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      th {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img
+        src="https://silnkotakinabalu.sch.id/wp-content/uploads/2022/11/2-1536x400.png"
+        alt="Logo Sekolah"
+      />
+      <h1>- Pusdatin SIKK</h1>
+    </div>
+    <marquee><h2>- PENCARIAN DATA SISWA BERDASARKAN NISN -</h2></marquee>
+    <div class="content">
+      <div class="search-container">
+        <input
+          type="text"
+          id="nisn"
+          placeholder="Cari data siswa berdasarkan NISN..."
+        />
+        <button id="searchBtn" onclick="search()">Cari</button>
+      </div>
+      <div id="result"></div>
+    </div>
+    <script>
+      var inputNisn = document.getElementById("nisn");
+      inputNisn.addEventListener("dblclick", search);
+      document.addEventListener("click", function () {
+        nisnInput.blur();
+      });
+      inputNisn.addEventListener("keydown", function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          search();
+        }
+      });
+      function search() {
+        var nisn = document.getElementById("nisn").value;
+        if (nisn.trim() === "") {
+          alert("Masukkan NISN terlebih dahulu, Ges..");
+          return;
+        }
+        google.script.run.withSuccessHandler(showResult).searchStudent(nisn);
+      }
+      function showResult(result) {
+        var html = "<h3>Hasil Pencarian:</h3>";
+        if (result.length > 0) {
+          html += "<table>";
+          html +=
+            "<tr><th>NO</th><th>NAMA LENGKAP</th><th>L/P</th><th>NIPD</th><th>NISN</th><th>TEMPAT LAHIR</th><th>TANGGAL LAHIR</th><th>ALAMAT</th><th>NOMOR HP</th><th>EMAIL</th><th>NAMA ORANGTUA</th><th>FOTO</th></tr>";
+          for (var i = 0; i < result.length; i++) {
+            html += "<tr>";
+            html += "<td>" + result[i][1] + "</td>";
+            html += "<td>" + result[i][2] + "</td>";
+            html += "<td>" + result[i][3] + "</td>";
+            html += "<td>" + result[i][4] + "</td>";
+            html += "<td>" + result[i][5] + "</td>";
+            html += "<td>" + result[i][6] + "</td>";
+            html += "<td>" + result[i][7] + "</td>";
+            html += "<td>" + result[i][8] + "</td>";
+            html += "<td>" + result[i][9] + "</td>";
+            html += "<td>" + result[i][10] + "</td>";
+            html += "<td>" + result[i][11] + "</td>";
+            html +=
+              '<td><img src="' +
+              result[i][12] +
+              '" alt="Foto" width="50"></td>';
+            html += "</tr>";
+          }
+          html += "</table>";
+        } else {
+          html += "<p>Data siswa tidak ditemukan.</p>";
+        }
+        document.getElementById("result").innerHTML = html;
+      }
+      document
+        .getElementById("nisn")
+        .addEventListener("keyup", function (event) {
+          event.preventDefault();
+          if (event.keyCode === 13) {
+            document.getElementById("searchBtn").click();
+          }
+        });
+    </script>
+  </body>
+</html>
