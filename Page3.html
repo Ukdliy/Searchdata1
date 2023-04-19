@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <title>Jam Digital</title>
+  <style>
+    .clock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: #fff;
+  background-color: #333;
+  padding: 2rem;
+  border-radius: 1px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.number{
+  width: 6rem;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #111;
+  border-radius: 10px;
+  box-shadow: inset 05px 15px rgba(0, 0, 0, 0);
+}
+.divider{
+  font-size: 4rem;
+  margin: 0 1rem;
+  color: #888;
+}
+.number::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(255,255,255,0.2), rgba(0,0,0,0.2));
+  border-radius: 10px;
+}
+  </style>
+</head>
+<body>
+    <div class="clock">
+        <div id="hours" class="number"></div>
+        <div class="divider">:</div>
+        <div id="minutes" class="number"></div>
+        <div class="divider">:</div>
+        <div id="seconds" class="number"></div>
+  </div>
+  <script>
+    function updateTime() {
+  const date = new Date();
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let seconds = date.getSeconds();
+  
+  hours = hours < 10 ? '0' + hours : hours;
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+  
+  document.getElementById('hours').textContent = hours;
+  document.getElementById('minutes').textContent = minutes;
+  document.getElementById('seconds').textContent = seconds;
+}
+
+setInterval(updateTime, 1000);
+
+    updateTime();
+  </script>
+  <script src="https://kit.fontawesome.com/your-account.js" crossorigin="anonymous"></script>
+</body>
+</html>
+    <base target="_top">
+    <style>
+     body{
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f1f1f1;
+     }
+    .header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-image: radial-gradient(circle at 119.33% 50%, #787874 0, #505467 25%, #1f3259 50%, #00154b 75%, #00003e 100%);
+        color: #fff;
+        padding: 30px;
+    }
+    .header h1{
+        margin: 0;
+        font-size: 25px;
+    }
+    .header img{
+        height: 100px;
+    }
+    .content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 35px;
+        margin-top: 25px;
+    }
+      .search-container {
+        display: flex;  
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .search-container input[type=text]{
+        width: 25%;
+        height: 45px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border-top-left-radius: 15px;
+        outline-color: #ccc;
+        font-size: 16px;
+        text-align: center;
+        background-color: white;
+        background-image: url('https://www.w3schools.com/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+      }
+    .search-container input[type=text]:focus{
+        width: 28%;
+    }
+      table {
+        border-collapse: inherit;
+        margin: auto;
+        width: 100%;
+        border-radius: 10px;
+        display: center;
+      }
+      th, td {
+        text-align: left;
+        padding: 8px;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      th {
+        background-color: #333;
+        color: #fff;
+        text-align: center; 
+        background-image: radial-gradient(circle at 119.33% 50%, #787874 0, #505467 25%, #1f3259 50%, #00154b 75%, #00003e 100%);
+      }
+      .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+        opacity: 1;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      .popup-content {
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        width: 500px;
+        font-size: 25px;      
+      }
+      .close-btn {
+        background-color: #ff4c4c;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .close-btn:hover {
+        background-color: #ff6666;
+      }
+      .popup.show {
+        opacity: 2;
+        visibility: visible;
+      }       
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3b82IDNnErUblFDTDAoXUEUwyQzFGDs3XyHE9sBqLZxVHtyoRvgbaIHHNSvYZ7RZ8CKng1Uuf1PMtdRWdnA-bUlaPuWGOhrmpmGI6v8QlXIhJ5k28SVq9ZGA_J9FlWtXL-Xd876-vjHucgEsEPfUtVk64DJ06HnNCMIO7oTwA-YBp4aMfMnh38jRE/w640-h160/Blue%20Virtual%20Google%20Classroom%20Header%20(4).png" alt="Logo Sekolah">
+      <h1> - PUSAT DATA SIKK</h1>
+      <script>
+      function updateTime() {
+      var now = new Date();
+      var dateTime = document.getElementById('datetime');
+      dateTime.innerHTML = now.toLocaleString();
+      }
+      updateTime();
+      setInterval(updateTime, 1000);
+    </script>
+    </div>
+    <marquee><h2>HELLO - WELCOME TO PUSAT DATA SIKK</h2></marquee>
+      <div class="search-container">
+        <input type="text" id="nisn" placeholder="Search NISN">
+      </div>
+      <div id="result"></div>
+    </div>
+    <script>
+      var inputNisn = document.getElementById('nisn');
+      inputNisn.addEventListener('dblclick', search);
+      document.addEventListener('click', function() {
+      nisnInput.blur();
+      });
+      inputNisn.addEventListener('keydown', function(event) {
+      if (event.keyCode === 13) {
+      event.preventDefault();
+      search();
+      }
+      });
+      function search() {
+        var nisn = document.getElementById('nisn').value;
+        if (nisn.trim() === '') {
+        document.getElementById('result').innerHTML = '';
+        return;
+        }
+        google.script.run.withSuccessHandler(showResult).searchStudent(nisn);
+        }
+      function showResult(result) {
+        var html = '<div style="text-align:center;"><h3>Hasil Pencarian:</h3>';
+        if (result.length > 0) {
+          html += '<p>Jumlah Data: ' + result.length + '</p>';
+          html += '<table>';
+          html += '<tr><th>NO</th><th>NAMA LENGKAP</th><th>L/P</th><th>NIPD</th><th>NISN</th><th>TEMPAT LAHIR</th><th>TANGGAL LAHIR</th><th>ALAMAT</th><th>NOMOR HP</th><th>EMAIL</th><th>NAMA ORANGTUA</th><th>FOTO</th></tr>';
+          for (var i = 0; i < result.length; i++) {
+            html += '<tr>';
+            html += '<td>' + result[i][1] + '</td>';
+            html += '<td>' + result[i][2] + '</td>';
+            html += '<td>' + result[i][3] + '</td>';
+            html += '<td>' + result[i][4] + '</td>';
+            html += '<td>' + result[i][5] + '</td>';
+            html += '<td>' + result[i][6] + '</td>';
+            html += '<td>' + result[i][7] + '</td>';
+            html += '<td>' + result[i][8] + '</td>';
+            html += '<td>' + result[i][9] + '</td>';
+            html += '<td>' + result[i][10] + '</td>';
+            html += '<td>' + result[i][11] + '</td>';
+            html += '<td><img src="' + result[i][12] + '" alt="Foto" width="80"></td>';
+            html += '</tr>';
+          }
+          html += '</table>';
+        } else {
+         var popup = document.querySelector('.popup');
+           popup.classList.add('show');
+        var closeBtn = document.querySelector('.close-btn');
+          closeBtn.addEventListener('click', function() {
+            popup.classList.remove('show');
+          });
+        }
+        document.getElementById('result').innerHTML = html;
+      }
+      
+       document.getElementById("nisn").addEventListener("keyup", function(event) {
+        event.preventDefault();
+      if (event.keyCode === 13) {
+      document.getElementById("searchBtn").click();
+  }
+});
+    </script>
+  </body>
+  <div class="popup">
+  <div class="popup-content">
+    <h2>Ooops!</h2>
+    <p>Data yang Kamu  cari tiada oo....</p>
+    <p>Masukkan NISN dengan benar ya.</p>
+    <button class="close-btn">Tutup</button>
+  </div>
+</html>
